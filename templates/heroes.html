@@ -1,0 +1,67 @@
+{% include 'header.html' %}
+
+    <div class="container main" role="main">
+        <div class="page-header">
+            <h1>Heroes</h1>
+        </div>
+
+        <div class="row">
+                <div class="col-md-6">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>HP</th>
+                        <th>Defense</th>
+                        <th>DMG</th>
+                        <th>Catch rate</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {{ heroes_table|safe }}
+                    </tbody>
+                  </table>
+                  <div class="row">
+                  {% with messages = get_flashed_messages() %}
+                     {% if messages %}
+                        <ul>
+                           {% for message in messages %}
+                           <li class="alert-red">{{ message }}</li>
+                           {% endfor %}
+                        </ul>
+                     {% endif %}
+                  {% endwith %}
+                    <h3>Add hero</h3>
+                    <form role="form" method="POST" action="heroes">
+                        <div class="form-group">
+                            <label for="name">Name: </label>
+                            <input type="text" name="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hp">HP: </label>
+                            <input type="number" name="hp" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="defense">Defense: </label>
+                            <input type="number" name="defense" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="dmg">DMG: </label>
+                            <input type="number" name="dmg" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="catch rate">Catch rate: </label>
+                            <input type="number" name="catch_rate" class="form-control" />
+                        </div>
+                        <label for="avatar">Avatar: </label>
+                        <input type="file" name="avatar" accept="image/*"><br>
+                        <button type="submit" class="btn btn-default">Add</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,47 @@
+{% include 'header.html' %}
+
+    <div class="container main" role="main">
+        <div class="page-header">
+            <h1>Missions</h1>
+        </div>
+
+        <div class="row">
+                <div class="col-md-6">
+                  <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Missions</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ missions_table|safe }}
+                    </tbody>
+                  </table>
+                  <div class="row">
+                      {% with messages = get_flashed_messages() %}
+                         {% if messages %}
+                            <ul>
+                               {% for message in messages %}
+                               <li class="alert-red">{{ message }}</li>
+                               {% endfor %}
+                            </ul>
+                         {% endif %}
+                      {% endwith %}
+                    <h3>Create new mission</h3>
+                    <form role="form" method="POST" action="missions">
+                        <div class="form-group">
+                            <label for="name">Mission name: </label>
+                            <input type="text" name="name" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-default">Add</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% include 'footer.html' %}
